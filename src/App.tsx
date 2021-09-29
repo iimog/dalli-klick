@@ -1,23 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import bild1 from './img/images/bernd_83.jpg';
+import bild2 from './img/images/mama_83.jpg';
+import bild3 from './img/images/mama_84.jpg';
+import bild4 from './img/images/nicki_83.jpg';
+import bild5 from './img/images/papa_tunesien_83.jpg';
+import bild6 from './img/images/carlos_83.jpg';
+import mask1 from './img/masks/mask1.png';
+import mask2 from './img/masks/mask2.png';
+import mask3 from './img/masks/mask3.png';
+import mask4 from './img/masks/mask4.png';
+import mask5 from './img/masks/mask5.png';
+import mask6 from './img/masks/mask6.png';
+import mask7 from './img/masks/mask7.png';
+import mask8 from './img/masks/mask8.png';
+import _ from 'lodash';
 
 function App() {
+  const allImages = [bild1, bild2, bild3, bild4, bild5, bild6]
+  const allMasks = [mask1, mask2, mask3, mask4, mask5, mask6, mask7, mask8]
+  const [masks, setMasks] = useState(allMasks)
+  const [bild, setBild] = useState(_.sample(allImages))
+
+  const revealTile = () => {
+    if (masks.length > 0) {
+      const tileToReveal = Math.floor(Math.random() * masks.length)
+      const maskClone = masks.slice()
+      maskClone.splice(tileToReveal, 1)
+      setMasks(maskClone)
+    } else {
+      setMasks(allMasks)
+      setBild(_.sample(allImages))
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <div className="ratespiel" style={{ position: "relative", width: "80%" }} onClick={revealTile}>
+          <img src={bild} style={{
+            maxWidth: "100%",
+            //maxHeight: "800px",
+            position: "relative"
+          }} />
+          {masks.map(m => <img src={m} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} />)}
+        </div>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          {masks.length > 0 ? `Noch ${masks.length} Teile` : bild?.split('/')[3].split('.')[0].replaceAll("_", " ")}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
