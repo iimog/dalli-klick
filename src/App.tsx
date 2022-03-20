@@ -62,10 +62,10 @@ function App() {
         <p>
           {`Bild ${bild + 1}/${allImages.length}`}
         </p>
-        <div className="ratespiel" style={{ position: "relative", width: "80%" }} onClick={revealTile}>
+        <div className="ratespiel" style={{ position: "relative", width: "65%" }} onClick={revealTile}>
           <img src={allImages[bild]} style={{
             maxWidth: "100%",
-            maxHeight: "800px",
+            maxHeight: "1600px",
             position: "relative"
           }} />
           {masks.map(m => <img src={m} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} />)}
