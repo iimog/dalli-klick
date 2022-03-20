@@ -45,7 +45,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          {`Bild ${bild + 1}/${allImages.length}`}
+          {`Picture ${bild + 1}/${allImages.length}`}
         </p>
         <div className="ratespiel" style={{ position: "relative", width: "65%" }} onClick={revealTile}>
           <img src={allImages[bild]} alt="" style={{
@@ -56,7 +56,7 @@ function App() {
           {masks.map(m => <img src={m} alt="" key={m} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} />)}
         </div>
         <p>
-          {masks.length > 0 ? `Noch ${masks.length} Teile` : allImages[bild]?.split('/')[3].split('.')[0].split('_').map(x => _.capitalize(x)).join(" ")}
+          {masks.length > 0 ? `${masks.length} pieces left` : allImages[bild]?.split('/')[3].split('.')[0].split('_').map(x => _.capitalize(x)).join(" ")}
         </p>
       </header>
     </div>
